@@ -226,7 +226,7 @@ nc <IP> <PORT>
 ```
 You've reached the basement!
 SECRET UNLOCKED!
-SEASIDES{the_flag_here}
+SEASIDES{9uff6r_0v3rfl0w_t1t9n_w4ll}
 ```
 ---
 

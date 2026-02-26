@@ -12,7 +12,7 @@ On startup the program shows a status banner and waits for commands on stdin. Av
 ### File type and metadata
 ```
 $ file the_last_check
-the_last_check: ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), dynamically linked, not stripped
+the_last_check: ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), dynamically linked, stripped
 ```
 
 ### Key strings

@@ -9,12 +9,12 @@ This repository contains 6 challenges (3 PWN and 3 Web) developed by Meherx0111,
 
 | # | Category | Challenge Name | Writeup |
 |---|----------|----------------|---------|
-| 1 | [PWN](PWN/) | [Berry Counter](PWN/app/berry_counter/) | [Writeup](PWN/app/berry_counter/Writeup.md) |
-| 2 | [PWN](PWN/) | [Colossal Leak](PWN/app/colossal_leak/) | [Writeup](PWN/app/colossal_leak/Writeup.md) |
-| 3 | [PWN](PWN/) | [The Last Check](PWN/app/the_last_check/) | [Writeup](PWN/app/the_last_check/Writeup.md) |
-| 4 | [Web](Web/) | [Blindspot](Web/Blindspot/) | [Writeup](Web/Blindspot/Writeup.md) |
-| 5 | [Web](Web/) | [Project Nebula](Web/Project%20Nebula/) | [Writeup](Web/Project%20Nebula/Writeup.md) |
-| 6 | [Web](Web/) | [Seasides Online Store](Web/Seasides%20Online%20Store/) | [Writeup](Web/Seasides%20Online%20Store/Writeup.md) |
+| 1 | PWN | [Berry Counter](PWN/app/berry_counter/) | [Writeup](PWN/app/berry_counter/Writeup.md) |
+| 2 | PWN | [Colossal Leak](PWN/app/colossal_leak/) | [Writeup](PWN/app/colossal_leak/Writeup.md) |
+| 3 | PWN | [The Last Check](PWN/app/the_last_check/) | [Writeup](PWN/app/the_last_check/Writeup.md) |
+| 4 | Web | [Blindspot](Web/Blindspot/) | [Writeup](Web/Blindspot/Writeup.md) |
+| 5 | Web | [Project Nebula](Web/Project%20Nebula/) | [Writeup](Web/Project%20Nebula/Writeup.md) |
+| 6 | Web | [Seasides Online Store](Web/Seasides%20Online%20Store/) | [Writeup](Web/Seasides%20Online%20Store/Writeup.md) |
 
 ---
 

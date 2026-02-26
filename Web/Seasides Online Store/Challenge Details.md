@@ -1,0 +1,8 @@
+Name: Seasides – Online Store
+Description: 
+    Welcome to the official merchandise store of India’s most loved security conference.
+
+    Explore exclusive drops, limited edition collectibles, and conference favorites.
+    Stock moves fast. Timing matters.
+Link: http://<EC2 Public IP Address>:<Port Number>
+Flag: SEASIDES{r4c3_c0nd1t10n_0v3rs3ll_br34k}

@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  web:
+    image: nginx:latest
+    container_name: blindspot_web
+    ports:
+      - "80:80"
+    volumes:
+      - ./site:/usr/share/nginx/html:ro
+
+  grafana:
+    build: .
+    container_name: blindspot_grafana
+    ports:
+      - "8081:3000"
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin

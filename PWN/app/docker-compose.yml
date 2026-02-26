@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  #Berry Counter
+  berry_counter:
+    build: ./berry_counter
+    container_name: ctf_berry_counter
+    ports:
+      - "9003:9999"
+    restart: unless-stopped
+    mem_limit: 100m
+    cpus: 0.5
+  
+  # Colossal Leak
+  colossal_leak:
+    build: ./colossal_leak
+    container_name: ctf_colossal_leak
+    ports:
+      - "9005:9999"
+    restart: unless-stopped
+    mem_limit: 100m
+    cpus: 0.5
+    
+  # The Last Check
+  the_last_check:
+    build: ./the_last_check
+    container_name: ctf_the_last_check
+    ports:
+      - "9007:9999"
+    restart: unless-stopped
+    mem_limit: 100m
+    cpus: 0.5

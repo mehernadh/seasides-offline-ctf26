@@ -1,0 +1,23 @@
+{
+  "items": [
+    {
+      "id": "UevpApxP",
+      "name": "hi"
+    },
+    {
+      "id": "IosK8iFF",
+      "name": "hello"
+    },
+    {
+      "id": "1",
+      "name": "Welcome item"
+    }
+  ],
+  "internalBackups": [
+    {
+      "id": "b1",
+      "contents": "internal backup blob 1"
+    }
+  ],
+  "internalKey": "INTKEY-fsSIQRtiFeDs"
+}

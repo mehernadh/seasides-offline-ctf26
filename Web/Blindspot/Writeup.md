@@ -41,7 +41,6 @@ The Grafana version running on this challenge is vulnerable to **CVE-2021-43798*
 **What this means:**
 - Path traversal is a vulnerability where you manipulate the file path in a URL to read files outside the intended directory.
 - The vulnerability exists in Grafana's plugin handling code.
-- **Important:** You don't need to be logged in to exploit this—it works on unauthenticated requests.
 
 ---
 

@@ -87,7 +87,7 @@ Disassembly (conceptual):
 401208:  mov    QWORD PTR [rax + 0x18], rdx  ; titans[index]->report = normal_report
 ```
 
-**Function: Remove Titan (choice 2) — VULNERABILITY**
+**Function: Remove Titan (choice 2) - VULNERABILITY**
 ```asm
 4012b0:  lea    rsi, "Enter record index to remove (0-4): "
 4012b7:  call   printf
@@ -112,7 +112,7 @@ Disassembly (conceptual):
 ; titans[index] is still a dangling pointer in the array
 ```
 
-**Function: Update Titan (choice 3) — CRITICAL VULNERABILITY**
+**Function: Update Titan (choice 3) - CRITICAL VULNERABILITY**
 ```asm
 4013a0:  lea    rsi, "Enter record index to update (0-4): "
 4013a7:  call   printf
@@ -138,7 +138,7 @@ Disassembly (conceptual):
 ; All into potentially freed heap memory!
 ```
 
-**Function: Report (choice 4) — TRIGGER**
+**Function: Report (choice 4) - TRIGGER**
 ```asm
 4014c0:  lea    rsi, "Enter record index to report (0-4): "
 4014c7:  call   printf

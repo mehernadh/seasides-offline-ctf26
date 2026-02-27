@@ -36,10 +36,12 @@ After deployment:
 - **Web challenges**: Open `http://<EC2_IP>:<PORT>` in your browser
 
 **Terraform Setup Guides:**
-- [PWN Terraform Guide](PWN/terraform_setup_guide.md)
-- [Blindspot Terraform Guide](Web/Blindspot/terraform_setup_guide.md)
-- [Project Nebula Terraform Guide](Web/Project%20Nebula/terraform_setup_guide.md)
-- [Seasides Online Store Terraform Guide](Web/Seasides%20Online%20Store/terraform_setup_guide.md)
+| Category | Challenge Name | Guide Location |
+|----------|----------------|----------------|
+| PWN | All PWN Challenges | [terraform_setup_guide.md](PWN/terraform_setup_guide.md) |
+| Web | Blindspot | [terraform_setup_guide.md](Web/Blindspot/terraform_setup_guide.md) |
+| Web | Project Nebula | [terraform_setup_guide.md](Web/Project%20Nebula/terraform_setup_guide.md) |
+| Web | Seasides Online Store | [terraform_setup_guide.md](Web/Seasides%20Online%20Store/terraform_setup_guide.md) |
 
 ---
 
@@ -52,10 +54,12 @@ After deployment:
 - **Web challenges**: Open `http://localhost:<PORT>` in your browser
 
 **Manual Setup Guides:**
-- [PWN Manual Setup](PWN/app/manual_setup_guide.md)
-- [Blindspot Manual Setup](Web/Blindspot/app/manual_setup_guide.md)
-- [Project Nebula Manual Setup](Web/Project%20Nebula/manual_setup_guide.md)
-- [Seasides Online Store Manual Setup](Web/Seasides%20Online%20Store/manual_setup_guide.md)
+| Category | Challenge Name | Guide Location |
+|----------|----------------|----------------|
+| PWN | All PWN Challenges | [manual_setup_guide.md](PWN/app/manual_setup_guide.md) |
+| Web | Blindspot | [manual_setup_guide.md](Web/Blindspot/app/manual_setup_guide.md) |
+| Web | Project Nebula | [manual_setup_guide.md](Web/Project%20Nebula/manual_setup_guide.md) |
+| Web | Seasides Online Store | [manual_setup_guide.md](Web/Seasides%20Online%20Store/manual_setup_guide.md) |
 
 ---
 

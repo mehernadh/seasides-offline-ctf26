@@ -1,43 +1,81 @@
 # Blindspot Write-up
 
 ## Challenge Overview
-The `Blindspot` challenge presents a simple web application that initially serves only a placeholder HTML page. The goal is to discover hidden services and retrieve the flag.
+The `Blindspot` challenge starts with a website that shows only a blank placeholder page. The real vulnerability is hidden on a different port that you need to find it first, then exploit it to get the flag.
 
 ---
 
-## Reconnaissance
-1. **Access the main web page**
-   - Visiting the root URL only shows a dummy HTML page with no obvious clues.
-   - At this point, the service appears to be "blind" to any hints.
+## Step 1: Scan for Hidden Services
 
-2. **Port scanning**
-   - Running `nmap` against the target reveals additional services running on non-standard ports.
-   - One such service was found on port **8081**, which responded as a Grafana instance.
+When you visit `http://<target-ip>:80`, you only see a dummy HTML page. This dead-end is intentional—the vulnerability is **not** on port 80.
 
-   ```bash
-   nmap -p- --open -sV <target-ip>
-   # example output includes: 8081/tcp open  http    grafana
-   ```
+Use `nmap` to scan all ports and find what else is running:
+
+```bash
+nmap -p- --open -sV <target-ip>
+```
+
+This will reveal a service running on port **8081**. The output will show something like:
+```
+8081/tcp open  http    Grafana
+```
+
+This is your real target.
+
+---
+
+## Step 2: Identify Grafana and Its Version
+
+Navigate to `http://<target-ip>:8081` in your browser. You'll see the Grafana dashboard displayed directly with **no login page is required**. This is the vulnerability where Grafana is exposed without authentication enabled.
+
+**Find the version number:** Look at the page source or the bottom-right corner of the Grafana interface—the version is usually displayed there (for example, `7.5.3`).
+
+**Why does version matter?** Older versions have known security vulnerabilities. Searching the version online will show you what exploits are available.
+
+---
+
+## Step 3: Check for Known Vulnerabilities (CVE-2021-43798)
+
+The Grafana version running on this challenge is vulnerable to **CVE-2021-43798**, a **path traversal vulnerability**.
+
+**What this means:**
+- Path traversal is a vulnerability where you manipulate the file path in a URL to read files outside the intended directory.
+- The vulnerability exists in Grafana's plugin handling code.
+- **Important:** You don't need to be logged in to exploit this—it works on unauthenticated requests.
 
 ---
 
 ## Exploring the Grafana Instance
-Accessing `http://<target-ip>:8081` brought up the Grafana login page. When exploring the page the **Grafana version number** was clearly displayed. A quick search of that version against public CVE databases revealed it was outdated and vulnerable.
 
-> **Note:** Identifying the version is a key step during reconnaissance; it allowed us to look for specific vulnerabilities affecting that release.
+Accessing `http://<target-ip>:8081` displays the Grafana dashboard directly—no authentication is configured. The **Grafana version number** is clearly displayed. A quick search of that version against public CVE databases reveals it's outdated and vulnerable.
 
-### Path Traversal Vulnerability (CVE-2021-43798)
-Grafana versions prior to a security update (including the one observed) were vulnerable to a path traversal bug in plugin resources. The flaw could be triggered **without authentication**, allowing an attacker to read arbitrary files on the host simply by crafting a malicious URL.
+> **Note:** The fact that Grafana is exposed without authentication makes it easier to exploit. Identifying the version is crucial during reconnaissance; it lets us find specific vulnerabilities affecting that release.
 
-We exploit this by abusing the `/public/plugins/alertlist` path with `--path-as-is` to bypass normalization. In a real attack the `alertlist` directory isn’t documented; it’s just the name of a Grafana plugin. During the challenge, players typically try a handful of common plugin names (trial and error) until one returns a valid response. In this case `alertlist` happened to be the correct guess.
+---
 
-```bash
-curl --path-as-is \
-  http://<target-ip>:8081/public/plugins/alertlist/../../../../../../../../flag.txt
+## Step 4: Exploit the Vulnerability
+
+The vulnerable endpoint is:
+```
+/public/plugins/<plugin-name>/../../../../../../../../etc/passwd
 ```
 
-> The flag was successfully retrieved:
+The key insight:
+- Grafana has a plugin system and stores plugins in `/public/plugins/`
+- The code doesn't properly validate the file path you request
+- Using `../` repeatedly lets you escape the plugin directory and read any file on the system
 
+**To read the flag**, use `curl` with the `--path-as-is` flag (this prevents curl from normalizing the path).
+
+> **Finding the right plugin name:** the exploit requires a valid plugin directory. In the challenge you don’t know which plugins are installed, so you guess common names one by one until one returns a response. We eventually tried `alertlist`, which worked.
+
+```bash
+curl --path-as-is "http://<target-ip>:8081/public/plugins/alertlist/../../../../../../../../flag.txt"
+```
+
+**Note:** `alertlist` is a real Grafana plugin and it's a safe guess that's likely to exist on the system.
+
+**Output:**
 ```
 SEASIDES{gr4f4n4_p4th_tr4v3rs4l}
 ```
@@ -45,4 +83,6 @@ SEASIDES{gr4f4n4_p4th_tr4v3rs4l}
 ---
 
 ## Conclusion
-By performing simple reconnaissance and identifying an exposed Grafana service, we leveraged a known path traversal vulnerability to access the flag.
+
+This challenge demonstrates the importance of checking non-standard ports and verifying access controls. A publicly accessible dashboard with an outdated Grafana version provided a trivial path traversal that yielded the flag. Always lock down monitoring interfaces and keep software versions up to date.
+
